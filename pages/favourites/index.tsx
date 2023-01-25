@@ -1,9 +1,9 @@
-import { DateTime } from "luxon";
 import { GetServerSideProps } from "next/types";
 import nookies from "nookies";
 import { fetchData } from "../../api";
 import MatchList from "../../components/MatchList";
 import { Match } from "../../types";
+import { getTodaysMatches, getTomorrowsMatches } from "../../util";
 
 type Props = {
   matches: Match[];
@@ -58,15 +58,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     matches.sort((a, b) => a.fixture.timestamp - b.fixture.timestamp);
 
-    const today = DateTime.now();
-    const tomorrow = today.plus({ days: 1 });
-
-    const matchesToday = matches.filter((match) =>
-      DateTime.fromISO(match.fixture.date.toString()).hasSame(today, "day")
-    );
-    const matchesTomorrow = matches.filter((match) =>
-      DateTime.fromISO(match.fixture.date.toString()).hasSame(tomorrow, "day")
-    );
+    const matchesToday = getTodaysMatches(matches);
+    const matchesTomorrow = getTomorrowsMatches(matches);
 
     return {
       props: {
