@@ -1,0 +1,124 @@
+html {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #111414, #14161e);
+}
+
+body {
+  color: whitesmoke;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-2 {
+  gap: 0.2rem;
+}
+
+.match {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: white;
+  background: rgba(36, 35, 35, 0.1);
+  width: 350px;
+  max-width: 80vw;
+  padding: 8px;
+  margin: auto;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.match p {
+  word-break: break-word;
+}
+
+.match-goals {
+  font-size: 2em;
+  margin: 0px 0px 0px 0px;
+}
+
+.match-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.match-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.match-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.match-league {
+  margin-bottom: 0px;
+  color: rgb(114, 106, 106);
+}
+
+.match-date {
+  margin-bottom: 0px;
+}
+
+.match-team-logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.match-team-logo img {
+  width: 60px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.league-card {
+  background: rgba(36, 34, 34, 0.521);
+  padding: 20px 10px;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+}
+.league-card img {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(228, 217, 217);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.league-card h4 {
+  margin-bottom: 0px;
+}
+
+.league-card:hover {
+  background: rgba(83, 79, 79, 0.521);
+}
+
+.competitions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
