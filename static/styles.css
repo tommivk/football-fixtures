@@ -90,6 +90,7 @@ body {
   background: rgba(36, 34, 34, 0.521);
   padding: 20px 10px;
   width: 190px;
+  min-width: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
