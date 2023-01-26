@@ -1,3 +1,4 @@
+import FavouriteCard from "./FavouriteCard";
 import LeagueCard from "./LeagueCard";
 
 const leagues = [
@@ -12,7 +13,6 @@ const leagues = [
     name: "UEFA Champions League",
     id: 2,
   },
-  { name: "Favourites", id: 0 },
 ];
 
 const LeagueCards = () => {
@@ -21,6 +21,7 @@ const LeagueCards = () => {
       {leagues.map((league) => (
         <LeagueCard key={league.id} league={league} />
       ))}
+      <FavouriteCard />
     </div>
   );
 };
