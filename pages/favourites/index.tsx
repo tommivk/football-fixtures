@@ -129,7 +129,7 @@ const Favourites = ({
             <table>
               <tbody>
                 {searchResult.map(({ team }) => (
-                  <tr>
+                  <tr key={team.id}>
                     <td>{team.name}</td>
                     <td>
                       {teamIds.includes(team.id.toString()) ? (
