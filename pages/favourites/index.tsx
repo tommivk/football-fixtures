@@ -92,37 +92,44 @@ const Favourites = ({
       </div>
 
       {page === 0 && (
-        <MatchList
-          matchesToday={matchesToday}
-          matchesTomorrow={matchesTomorrow}
-          upcomingMatches={upcomingMatches}
-        />
+        <>
+          {favouriteTeams.length === 0 ? (
+            <h2 className="info-text">No favourite teams added</h2>
+          ) : (
+            <MatchList
+              matchesToday={matchesToday}
+              matchesTomorrow={matchesTomorrow}
+              upcomingMatches={upcomingMatches}
+            />
+          )}
+        </>
       )}
 
       {page === 1 && (
         <>
-          <table className="fav-table">
-            <tbody>
-              {favouriteTeams.map(({ team }) => (
-                <tr key={team.id}>
-                  <td>
-                    <img src={team.logo} height={30} width={30} />
-                  </td>
-                  <td>{team.name} </td>
-                  <td>
-                    <Button
-                      size="sm"
-                      onClick={() => handleRemoveFavourite(team.id)}
-                    >
-                      Remove
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {favouriteTeams.length === 0 && (
-            <h2 className="text-center">No favourite teams added</h2>
+          {favouriteTeams.length === 0 ? (
+            <h2 className="info-text">No favourite teams added</h2>
+          ) : (
+            <table className="fav-table">
+              <tbody>
+                {favouriteTeams.map(({ team }) => (
+                  <tr key={team.id}>
+                    <td>
+                      <img src={team.logo} height={30} width={30} />
+                    </td>
+                    <td>{team.name} </td>
+                    <td>
+                      <Button
+                        size="sm"
+                        onClick={() => handleRemoveFavourite(team.id)}
+                      >
+                        Remove
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
         </>
       )}

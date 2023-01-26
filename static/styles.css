@@ -217,3 +217,8 @@ body {
 .fav-search-result table td img {
   vertical-align: middle;
 }
+
+.info-text {
+  text-align: center;
+  margin-top: 60px;
+}
