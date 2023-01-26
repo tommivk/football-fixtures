@@ -134,6 +134,7 @@ const Favourites = ({
             type="text"
             value={search}
             placeholder={"Team name"}
+            autoFocus
           />
           <div className="fav-search-result">
             <table>
