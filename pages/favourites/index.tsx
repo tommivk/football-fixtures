@@ -79,9 +79,24 @@ const Favourites = ({
   return (
     <>
       <div className="fav-nav">
-        <button onClick={handleNavigateFixtures}>Fixtures</button>
-        <button onClick={() => setPage(1)}>Favourites</button>
-        <button onClick={() => setPage(2)}>Search teams</button>
+        <button
+          onClick={handleNavigateFixtures}
+          className={`${page === 0 ? "active" : ""}`}
+        >
+          Fixtures
+        </button>
+        <button
+          onClick={() => setPage(1)}
+          className={`${page === 1 ? "active" : ""}`}
+        >
+          Favourites
+        </button>
+        <button
+          onClick={() => setPage(2)}
+          className={`${page === 2 ? "active" : ""}`}
+        >
+          Search teams
+        </button>
       </div>
 
       {page === 0 && (

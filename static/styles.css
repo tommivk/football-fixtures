@@ -146,7 +146,8 @@ body {
   font-weight: 600;
 }
 
-.fav-nav button:hover {
+.fav-nav button:hover,
+.fav-nav button.active {
   background: rgb(78 78 78);
 }
 
