@@ -9,6 +9,10 @@ body {
   box-sizing: border-box;
 }
 
+.layout {
+  padding-left: calc(100vw - 100%);
+}
+
 .flex {
   display: flex;
 }

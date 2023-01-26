@@ -6,9 +6,9 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <>
+    <div className="layout">
       <LeagueCards />
       <main>{children}</main>
-    </>
+    </div>
   );
 }
