@@ -118,47 +118,45 @@ const Favourites = ({
       )}
 
       {page === 2 && (
-        <div>
-          <div className="fav-search">
-            <input
-              onChange={handleSearch}
-              type="text"
-              value={search}
-              placeholder={"Team name"}
-            />
-            <div className="fav-search-result">
-              <table>
-                <tbody>
-                  {searchResult.map(({ team }) => (
-                    <tr>
-                      <td>{team.name}</td>
-                      <td>
-                        {teamIds.includes(team.id.toString()) ? (
-                          <button
-                            className="btn-small"
-                            onClick={() => handleRemoveFavourite(team.id)}
-                          >
-                            Remove
-                          </button>
-                        ) : (
-                          <button
-                            className="btn-small"
-                            onClick={() => handleAddFavourite(team.id)}
-                          >
-                            Add to favourites
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                  {searchResult.length == 0 && !!search && (
-                    <tr>
-                      <td>No teams found</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+        <div className="fav-search">
+          <input
+            onChange={handleSearch}
+            type="text"
+            value={search}
+            placeholder={"Team name"}
+          />
+          <div className="fav-search-result">
+            <table>
+              <tbody>
+                {searchResult.map(({ team }) => (
+                  <tr>
+                    <td>{team.name}</td>
+                    <td>
+                      {teamIds.includes(team.id.toString()) ? (
+                        <button
+                          className="btn-small"
+                          onClick={() => handleRemoveFavourite(team.id)}
+                        >
+                          Remove
+                        </button>
+                      ) : (
+                        <button
+                          className="btn-small"
+                          onClick={() => handleAddFavourite(team.id)}
+                        >
+                          Add to favourites
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+                {searchResult.length == 0 && !!search && (
+                  <tr>
+                    <td>No teams found</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
