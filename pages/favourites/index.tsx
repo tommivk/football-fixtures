@@ -98,6 +98,9 @@ const Favourites = ({
             <tbody>
               {favouriteTeams.map(({ team }) => (
                 <tr key={team.id}>
+                  <td>
+                    <img src={team.logo} height={30} width={30} />
+                  </td>
                   <td>{team.name} </td>
                   <td>
                     <button
@@ -130,6 +133,9 @@ const Favourites = ({
               <tbody>
                 {searchResult.map(({ team }) => (
                   <tr key={team.id}>
+                    <td>
+                      <img src={team.logo} height={30} width={30} />
+                    </td>
                     <td>{team.name}</td>
                     <td>
                       {teamIds.includes(team.id.toString()) ? (
