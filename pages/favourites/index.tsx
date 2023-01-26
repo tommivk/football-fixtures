@@ -17,7 +17,7 @@ type Props = {
   matchesToday: Match[];
   matchesTomorrow: Match[];
   favouriteTeamIds: string[];
-  teams: Teams[];
+  allTeams: Teams[];
 };
 
 const Favourites = ({
@@ -25,9 +25,9 @@ const Favourites = ({
   matchesToday,
   matchesTomorrow,
   favouriteTeamIds,
-  teams,
+  allTeams,
 }: Props) => {
-  const [searchResult, setSearchResult] = useState<Teams[]>(teams);
+  const [searchResult, setSearchResult] = useState<Teams[]>(allTeams);
   const [search, setSearch] = useState("");
   const [teamIds, setTeamIds] = useState(favouriteTeamIds);
   const [page, setPage] = useState(0);
@@ -35,7 +35,7 @@ const Favourites = ({
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearch(value);
-    const res = teams.filter((t) =>
+    const res = allTeams.filter((t) =>
       t.team.name.toLowerCase().includes(value.toLowerCase())
     );
     setSearchResult(res);
@@ -66,8 +66,8 @@ const Favourites = ({
   };
 
   const favouriteTeams = useMemo(
-    () => teams.filter((t) => teamIds.includes(t.team.id.toString())),
-    [teamIds, teams]
+    () => allTeams.filter((t) => teamIds.includes(t.team.id.toString())),
+    [teamIds, allTeams]
   );
 
   const handleNavigateFixtures = async () => {
@@ -204,7 +204,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const matchesTomorrow = getTomorrowsMatches(matches);
     const upcomingMatches = getUpcomingMatches(matches);
 
-    const teams: Teams[] = await getAllTeams();
+    const allTeams: Teams[] = await getAllTeams();
 
     return {
       props: {
@@ -212,7 +212,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         matchesTomorrow,
         upcomingMatches,
         favouriteTeamIds,
-        teams,
+        allTeams,
       },
     };
   } catch (error) {
