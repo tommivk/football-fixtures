@@ -206,6 +206,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const upcomingMatches = getUpcomingMatches(matches);
 
     const allTeams: Teams[] = await getAllTeams();
+    allTeams.sort((a, b) => a.team.name.localeCompare(b.team.name));
 
     return {
       props: {
