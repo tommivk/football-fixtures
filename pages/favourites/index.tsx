@@ -69,9 +69,9 @@ const Favourites = ({
     [teamIds, teams]
   );
 
-  const handleNavigateFixtures = () => {
+  const handleNavigateFixtures = async () => {
     if (JSON.stringify(teamIds) !== JSON.stringify(favouriteTeamIds)) {
-      return Router.reload();
+      await Router.replace(Router.asPath);
     }
     setPage(0);
   };
