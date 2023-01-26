@@ -8,7 +8,7 @@ type Props = {
 
 const MatchDetails = ({ match, fullDate = true }: Props) => {
   return (
-    <Link href={`/matches/${match.fixture?.id}`} className="match">
+    <div className="match">
       <h3>
         {match.teams?.home?.name} - {match.teams?.away?.name}
       </h3>
@@ -37,7 +37,7 @@ const MatchDetails = ({ match, fullDate = true }: Props) => {
           <img src={match.teams?.away?.logo} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
