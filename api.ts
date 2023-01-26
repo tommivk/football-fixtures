@@ -4,17 +4,20 @@ import camelcaseKeys from "camelcase-keys";
 const API_KEY = process.env.API_KEY ?? "";
 const BASE_URL = "https://v3.football.api-sports.io";
 
+const currentSeason = 2022;
+const supportedLeagues = [2, 39, 78, 135, 140];
+
 export const fetchData = async (path: string, cacheTimeMinutes?: number) => {
   try {
     const cache = await redis.get(path);
     // await redis.flushall();
     // await redis.del(path);
     if (cache) {
-      console.log("cached");
+      console.log("cached ", path);
       return JSON.parse(cache);
     }
 
-    console.log("no cache");
+    console.log("no cache ", path);
 
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set("x-rapidapi-key", API_KEY);
@@ -37,6 +40,25 @@ export const fetchData = async (path: string, cacheTimeMinutes?: number) => {
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
+  }
+};
+
+export const getAllTeams = async () => {
+  try {
+    const result = await Promise.all(
+      supportedLeagues.map((id) =>
+        fetchData(`/teams?league=${id}&season=${currentSeason}`, 43800)
+      )
+    );
+    let allTeams = result.flatMap((r) => r);
+    //remove duplicates
+    allTeams = allTeams.filter(
+      (value, index, self) =>
+        index === self.findIndex((t) => t.team.id === value.team.id)
+    );
+    return allTeams;
+  } catch (error) {
     throw error;
   }
 };
