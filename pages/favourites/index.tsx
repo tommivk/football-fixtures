@@ -27,7 +27,7 @@ const Favourites = ({
   favouriteTeamIds,
   teams,
 }: Props) => {
-  const [searchResult, setSearchResult] = useState<Teams[]>([]);
+  const [searchResult, setSearchResult] = useState<Teams[]>(teams);
   const [search, setSearch] = useState("");
   const [teamIds, setTeamIds] = useState(favouriteTeamIds);
   const [page, setPage] = useState(0);
