@@ -2,12 +2,16 @@ import { Match } from "../types";
 import MatchDetails from "./MatchDetails";
 
 type Props = {
-  matches: Match[];
   matchesToday: Match[];
   matchesTomorrow: Match[];
+  upcomingMatches: Match[];
 };
 
-const MatchList = ({ matches, matchesToday, matchesTomorrow }: Props) => {
+const MatchList = ({
+  matchesToday,
+  matchesTomorrow,
+  upcomingMatches,
+}: Props) => {
   return (
     <div>
       <h1 className="text-center">Today</h1>
@@ -25,10 +29,12 @@ const MatchList = ({ matches, matchesToday, matchesTomorrow }: Props) => {
       )}
 
       <h1 className="text-center">Upcoming</h1>
-      {matches.map((match) => (
+      {upcomingMatches.map((match) => (
         <MatchDetails key={match.fixture.id} match={match} />
       ))}
-      {matches.length === 0 && <p className="text-center">No fixtures</p>}
+      {upcomingMatches.length === 0 && (
+        <p className="text-center">No fixtures</p>
+      )}
     </div>
   );
 };

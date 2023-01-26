@@ -86,9 +86,9 @@ const Favourites = ({
 
       {page === 0 && (
         <MatchList
-          matches={upcomingMatches}
           matchesToday={matchesToday}
           matchesTomorrow={matchesTomorrow}
+          upcomingMatches={upcomingMatches}
         />
       )}
 

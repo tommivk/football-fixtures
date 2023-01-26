@@ -17,9 +17,9 @@ type Props = {
 const League = ({ upcomingMatches, matchesToday, matchesTomorrow }: Props) => {
   return (
     <MatchList
-      matches={upcomingMatches}
       matchesToday={matchesToday}
       matchesTomorrow={matchesTomorrow}
+      upcomingMatches={upcomingMatches}
     />
   );
 };
