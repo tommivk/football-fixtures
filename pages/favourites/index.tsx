@@ -10,6 +10,7 @@ import {
   getUpcomingMatches,
 } from "../../util";
 import Router from "next/router";
+import Button from "../../components/Button";
 
 type Props = {
   upcomingMatches: Match[];
@@ -79,24 +80,15 @@ const Favourites = ({
   return (
     <>
       <div className="fav-nav">
-        <button
-          onClick={handleNavigateFixtures}
-          className={`${page === 0 ? "active" : ""}`}
-        >
+        <Button size="md" onClick={handleNavigateFixtures} active={page === 0}>
           Fixtures
-        </button>
-        <button
-          onClick={() => setPage(1)}
-          className={`${page === 1 ? "active" : ""}`}
-        >
+        </Button>
+        <Button size="md" onClick={() => setPage(1)} active={page === 1}>
           Favourites
-        </button>
-        <button
-          onClick={() => setPage(2)}
-          className={`${page === 2 ? "active" : ""}`}
-        >
+        </Button>
+        <Button size="md" onClick={() => setPage(2)} active={page === 2}>
           Search teams
-        </button>
+        </Button>
       </div>
 
       {page === 0 && (
@@ -118,12 +110,12 @@ const Favourites = ({
                   </td>
                   <td>{team.name} </td>
                   <td>
-                    <button
-                      className="btn-small"
+                    <Button
+                      size="sm"
                       onClick={() => handleRemoveFavourite(team.id)}
                     >
                       Remove
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -154,19 +146,19 @@ const Favourites = ({
                     <td>{team.name}</td>
                     <td>
                       {teamIds.includes(team.id.toString()) ? (
-                        <button
-                          className="btn-small"
+                        <Button
+                          size="sm"
                           onClick={() => handleRemoveFavourite(team.id)}
                         >
                           Remove
-                        </button>
+                        </Button>
                       ) : (
-                        <button
-                          className="btn-small"
+                        <Button
+                          size="sm"
                           onClick={() => handleAddFavourite(team.id)}
                         >
                           Add to favourites
-                        </button>
+                        </Button>
                       )}
                     </td>
                   </tr>

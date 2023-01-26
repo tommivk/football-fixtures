@@ -21,6 +21,28 @@ body {
   gap: 0.2rem;
 }
 
+.btn {
+  background: transparent;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid rgb(78 78 78);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover,
+.btn.active {
+  background: rgb(78 78 78);
+}
+
+.btn-md {
+  padding: 10px 20px;
+}
+
+.btn-sm {
+  padding: 5px 20px;
+}
+
 .match {
   position: relative;
   display: block;
@@ -132,23 +154,7 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 5px;
-}
-
-.fav-nav button {
-  margin: 0px 5px;
-  padding: 10px 20px;
-  background: transparent;
-  color: white;
-  border-radius: 10px;
-  border: 1px solid rgb(78 78 78);
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.fav-nav button:hover,
-.fav-nav button.active {
-  background: rgb(78 78 78);
+  gap: 10px;
 }
 
 .fav-table {
@@ -198,18 +204,4 @@ body {
 
 .fav-search-result table td {
   padding: 2px 10px;
-}
-
-.btn-small {
-  padding: 5px 20px;
-  background: transparent;
-  color: white;
-  border-radius: 10px;
-  border: 1px solid rgb(78 78 78);
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-small:hover {
-  background: rgb(78 78 78);
 }
