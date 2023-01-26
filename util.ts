@@ -16,3 +16,12 @@ export const getTomorrowsMatches = (matches: Match[]) => {
     DateTime.fromISO(match.fixture.date.toString()).hasSame(tomorrow, "day")
   );
 };
+
+export const getUpcomingMatches = (matches: Match[]) => {
+  const tomorrow = DateTime.now().plus({ days: 1 });
+
+  return matches.filter((match) => {
+    const date = DateTime.fromISO(match.fixture.date.toString());
+    return date.startOf("day") > tomorrow.startOf("day");
+  });
+};

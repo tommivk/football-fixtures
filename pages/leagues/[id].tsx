@@ -2,18 +2,22 @@ import { GetServerSideProps } from "next/types";
 import { fetchData } from "../../api";
 import { Match } from "../../types";
 import MatchList from "../../components/MatchList";
-import { getTodaysMatches, getTomorrowsMatches } from "../../util";
+import {
+  getTodaysMatches,
+  getTomorrowsMatches,
+  getUpcomingMatches,
+} from "../../util";
 
 type Props = {
-  matches: Match[];
+  upcomingMatches: Match[];
   matchesToday: Match[];
   matchesTomorrow: Match[];
 };
 
-const League = ({ matches, matchesToday, matchesTomorrow }: Props) => {
+const League = ({ upcomingMatches, matchesToday, matchesTomorrow }: Props) => {
   return (
     <MatchList
-      matches={matches}
+      matches={upcomingMatches}
       matchesToday={matchesToday}
       matchesTomorrow={matchesTomorrow}
     />
@@ -35,12 +39,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const matchesToday = getTodaysMatches(matches);
     const matchesTomorrow = getTomorrowsMatches(matches);
+    const upcomingMatches = getUpcomingMatches(matches);
 
     return {
       props: {
-        matches,
         matchesToday,
         matchesTomorrow,
+        upcomingMatches,
       },
     };
   } catch (error) {
