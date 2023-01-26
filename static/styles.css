@@ -170,6 +170,10 @@ body {
   padding: 2px 10px;
 }
 
+.fav-table td img {
+  vertical-align: middle;
+}
+
 .fav-search-result {
   overflow: auto;
   position: relative;
@@ -208,4 +212,8 @@ body {
 
 .fav-search-result table td {
   padding: 2px 10px;
+}
+
+.fav-search-result table td img {
+  vertical-align: middle;
 }
