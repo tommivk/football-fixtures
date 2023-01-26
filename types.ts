@@ -1,7 +1,7 @@
 export interface Match {
   fixture: Fixture;
   league?: League;
-  teams?: Teams;
+  teams?: MatchTeams;
   goals?: Goals;
   score?: Score;
 }
@@ -38,16 +38,24 @@ export interface Goals {
   home?: number | null;
   away?: number | null;
 }
-export interface Teams {
+export interface MatchTeams {
   home: Team;
   away: Team;
 }
 
+export interface Teams {
+  team: Team;
+  venue?: Venue;
+}
+
 export interface Team {
-  id?: number;
-  name?: string;
+  id: number;
+  name: string;
+  code?: null | string;
+  country?: string;
+  founded?: number | null;
+  national?: boolean;
   logo?: string;
-  winner?: boolean | null;
 }
 
 export interface League {
@@ -65,4 +73,14 @@ export interface Score {
   fulltime?: Goals;
   extratime?: Goals;
   penalty?: Goals;
+}
+
+export interface Venue {
+  id?: number;
+  name?: string;
+  address?: null | string;
+  city?: string;
+  capacity?: number;
+  surface?: string;
+  image?: string;
 }
