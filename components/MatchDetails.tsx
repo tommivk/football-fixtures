@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Match } from "../types";
 
 type Props = {
