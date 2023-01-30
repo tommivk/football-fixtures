@@ -66,6 +66,7 @@ export interface League {
   flag?: string;
   season?: number;
   round?: string;
+  standings?: Array<Standing[]>;
 }
 
 export interface Score {
@@ -83,4 +84,36 @@ export interface Venue {
   capacity?: number;
   surface?: string;
   image?: string;
+}
+
+export interface StandingsResult {
+  league: League;
+}
+
+export interface Standing {
+  rank?: number;
+  team?: Team;
+  points?: number;
+  goalsDiff?: number;
+  group?: string;
+  form?: string;
+  status?: Status;
+  description?: null | string;
+  all?: StandingStats;
+  home?: StandingStats;
+  away?: StandingStats;
+  update?: Date;
+}
+
+export interface StandingStats {
+  played?: number;
+  win?: number;
+  draw?: number;
+  lose?: number;
+  goals?: StandingGoals;
+}
+
+export interface StandingGoals {
+  for?: number;
+  against?: number;
 }
