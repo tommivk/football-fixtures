@@ -79,7 +79,7 @@ const Favourites = ({
 
   return (
     <>
-      <div className="fav-nav">
+      <div className="btn-nav">
         <Button size="md" onClick={handleNavigateFixtures} active={page === 0}>
           Fixtures
         </Button>

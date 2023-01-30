@@ -1,5 +1,6 @@
 import redis from "./lib/redis";
 import camelcaseKeys from "camelcase-keys";
+import { StandingsResult } from "./types";
 
 const API_KEY = process.env.API_KEY ?? "";
 const BASE_URL = "https://v3.football.api-sports.io";
@@ -58,6 +59,21 @@ export const getAllTeams = async () => {
         index === self.findIndex((t) => t.team.id === value.team.id)
     );
     return allTeams;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getStandings = async (leagueId: string) => {
+  try {
+    if (leagueId === "2") return []; // Ignore Champions League
+
+    const result: StandingsResult[] = await fetchData(
+      `/standings?league=${leagueId}&season=${currentSeason}`,
+      24 * 60
+    );
+    const standings = result[0]?.league?.standings;
+    return standings?.[0];
   } catch (error) {
     throw error;
   }
