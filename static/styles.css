@@ -132,6 +132,10 @@ body {
   border-radius: 5px;
 }
 
+.card.active {
+  border: 2px solid rgb(170, 160, 160);
+}
+
 .favourite-card img {
   background-color: transparent;
 }

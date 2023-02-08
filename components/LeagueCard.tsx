@@ -1,8 +1,17 @@
 import Link from "next/link";
+import { League } from "../types";
 
-const LeagueCard = ({ league }: any) => {
+type Props = {
+  league: League;
+  active: boolean;
+};
+
+const LeagueCard = ({ league, active }: Props) => {
   return (
-    <Link className="card" href={`/leagues/${league.id}`}>
+    <Link
+      className={`card ${active ? "active" : ""}`}
+      href={`/leagues/${league.id}`}
+    >
       <img
         src={`https://media.api-sports.io/football/leagues/${league.id}.png`}
         width={50}

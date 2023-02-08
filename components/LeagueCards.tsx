@@ -1,5 +1,6 @@
 import FavouriteCard from "./FavouriteCard";
 import LeagueCard from "./LeagueCard";
+import { useRouter } from "next/router";
 
 const leagues = [
   {
@@ -16,12 +17,22 @@ const leagues = [
 ];
 
 const LeagueCards = () => {
+  const router = useRouter();
+  const path =
+    router.asPath === "/favourites"
+      ? "favourites"
+      : router.asPath.replace("/leagues/", "");
+
   return (
     <div className="competitions">
       {leagues.map((league) => (
-        <LeagueCard key={league.id} league={league} />
+        <LeagueCard
+          key={league.id}
+          league={league}
+          active={Number(path) === league.id}
+        />
       ))}
-      <FavouriteCard />
+      <FavouriteCard active={path === "favourites"} />
     </div>
   );
 };
