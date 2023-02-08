@@ -276,6 +276,7 @@ body {
 
   .card {
     max-width: fit-content;
+    padding: 10px;
   }
 
   .card h4 {
