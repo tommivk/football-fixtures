@@ -25,3 +25,5 @@ export const getUpcomingMatches = (matches: Match[]) => {
     return date.startOf("day") > tomorrow.startOf("day");
   });
 };
+
+export const supportedLeagueIds = [2, 39, 78, 135, 140];

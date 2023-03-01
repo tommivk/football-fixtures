@@ -1,12 +1,12 @@
 import redis from "./lib/redis";
 import camelcaseKeys from "camelcase-keys";
 import { StandingsResult } from "./types";
+import { supportedLeagueIds } from "./util";
 
 const API_KEY = process.env.API_KEY ?? "";
 const BASE_URL = "https://v3.football.api-sports.io";
 
 const currentSeason = 2022;
-const supportedLeagues = [2, 39, 78, 135, 140];
 
 export const fetchData = async (path: string, cacheTimeMinutes?: number) => {
   try {
@@ -48,7 +48,7 @@ export const fetchData = async (path: string, cacheTimeMinutes?: number) => {
 export const getAllTeams = async () => {
   try {
     const result = await Promise.all(
-      supportedLeagues.map((id) =>
+      supportedLeagueIds.map((id) =>
         fetchData(`/teams?league=${id}&season=${currentSeason}`, 43800)
       )
     );
