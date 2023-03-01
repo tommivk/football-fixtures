@@ -1,6 +1,6 @@
 import redis from "./lib/redis";
 import camelcaseKeys from "camelcase-keys";
-import { StandingsResult } from "./types";
+import { Match, StandingsResult } from "./types";
 import { supportedLeagueIds } from "./util";
 
 const API_KEY = process.env.API_KEY ?? "";
@@ -64,7 +64,7 @@ export const getAllTeams = async () => {
   }
 };
 
-export const getStandings = async (leagueId: string) => {
+export const getStandingsByLeagueId = async (leagueId: string) => {
   try {
     if (leagueId === "2") return []; // Ignore Champions League
 
@@ -77,4 +77,18 @@ export const getStandings = async (leagueId: string) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const getFixturesByLeagueId = async (leagueId: string) => {
+  return (await fetchData(
+    `/fixtures?season=${currentSeason}&league=${leagueId}&status=NS-1H-HT-2H-ET-BT-P`,
+    360
+  )) as Match[];
+};
+
+export const getFixturesByTeamId = async (teamId: string) => {
+  return (await fetchData(
+    `/fixtures?season=${currentSeason}&team=${teamId}&status=NS-1H-HT-2H-ET-BT-P`,
+    5 * 60
+  )) as Match[];
 };

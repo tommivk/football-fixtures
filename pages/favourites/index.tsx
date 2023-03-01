@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next/types";
 import nookies from "nookies";
 import { useMemo, useState } from "react";
-import { fetchData, getAllTeams } from "../../api";
+import { getAllTeams, getFixturesByTeamId } from "../../api";
 import MatchList from "../../components/MatchList";
 import { Match, Teams } from "../../types";
 import {
@@ -187,18 +187,11 @@ const Favourites = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const currentSeason = 2022;
-
     const cookies = nookies.get(context);
     const favouriteTeamIds = cookies.favouriteTeamIds?.split(",") ?? [];
 
     const result: Array<Match[]> = await Promise.all(
-      favouriteTeamIds.map((teamId) =>
-        fetchData(
-          `/fixtures?season=${currentSeason}&team=${teamId}&status=NS-1H-HT-2H-ET-BT-P`,
-          5 * 60
-        )
-      )
+      favouriteTeamIds.map((teamId) => getFixturesByTeamId(teamId))
     );
 
     let matches: Array<Match> = result.flatMap((r) => r);

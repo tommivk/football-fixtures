@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next/types";
-import { fetchData, getStandings } from "../../api";
+import { getFixturesByLeagueId, getStandingsByLeagueId } from "../../api";
 import { Match, Standing } from "../../types";
 import MatchList from "../../components/MatchList";
 import {
@@ -102,12 +102,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { id } = context.params as ContextParams;
 
-    const currentSeason = "2022";
-
-    const matches: Match[] = await fetchData(
-      `/fixtures?season=${currentSeason}&league=${id}&status=NS-1H-HT-2H-ET-BT-P`,
-      360
-    );
+    const matches = await getFixturesByLeagueId(id);
 
     matches.sort((a, b) => a.fixture.timestamp - b.fixture.timestamp);
 
@@ -115,7 +110,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const matchesTomorrow = getTomorrowsMatches(matches);
     const upcomingMatches = getUpcomingMatches(matches);
 
-    const standings = await getStandings(id as string);
+    const standings = await getStandingsByLeagueId(id);
 
     return {
       props: {
