@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next/types";
+import { GetStaticProps } from "next/types";
 import { fetchData, getStandings } from "../../api";
 import { Match, Standing } from "../../types";
 import MatchList from "../../components/MatchList";
@@ -6,9 +6,11 @@ import {
   getTodaysMatches,
   getTomorrowsMatches,
   getUpcomingMatches,
+  supportedLeagueIds,
 } from "../../util";
 import { useState } from "react";
 import Button from "../../components/Button";
+import { ParsedUrlQuery } from "querystring";
 
 type Props = {
   upcomingMatches: Match[];
@@ -83,9 +85,22 @@ const League = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticPaths = () => {
+  const paths = supportedLeagueIds.map((leagueId) => ({
+    params: {
+      id: leagueId.toString(),
+    },
+  }));
+  return { paths, fallback: false };
+};
+
+type ContextParams = {
+  id: string;
+} & ParsedUrlQuery;
+
+export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const { id } = context.query;
+    const { id } = context.params as ContextParams;
 
     const currentSeason = "2022";
 
@@ -110,6 +125,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         standings,
         key: id,
       },
+      revalidate: 60 * 60,
     };
   } catch (error) {
     return {
@@ -120,4 +136,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
+
 export default League;
