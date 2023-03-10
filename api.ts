@@ -72,8 +72,11 @@ export const getStandingsByLeagueId = async (leagueId: string) => {
       `/standings?league=${leagueId}&season=${currentSeason}`,
       24 * 60
     );
-    const standings = result[0]?.league?.standings;
-    return standings?.[0];
+    const standings = result?.[0].league?.standings;
+    if (!standings || standings.length === 0) {
+      throw "Standings were undefined";
+    }
+    return standings[0];
   } catch (error) {
     throw error;
   }
