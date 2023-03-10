@@ -32,6 +32,10 @@ export const fetchData = async (path: string, cacheTimeMinutes?: number) => {
     }
 
     const json = await response.json();
+    if (!(Array.isArray(json.errors) && json.errors.length === 0)) {
+      throw json.errors;
+    }
+
     const data = camelcaseKeys(json.response, { deep: true });
 
     cacheTimeMinutes !== undefined
