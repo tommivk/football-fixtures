@@ -3,7 +3,7 @@ import { Match } from "./types";
 
 export const getTodaysMatches = (matches: Match[]) => {
   const today = DateTime.now();
-
+  console.log(today);
   return matches.filter((match) =>
     DateTime.fromISO(match.fixture.date.toString()).hasSame(today, "day")
   );
