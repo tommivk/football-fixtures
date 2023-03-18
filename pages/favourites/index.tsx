@@ -43,7 +43,9 @@ const Favourites = ({
 
   const handleAddFavourite = (teamId: number) => {
     const cookies = nookies.get(null, "favouriteTeamIds");
-    const favouriteTeamIds = cookies.favouriteTeamIds?.split(",") ?? [];
+    const favouriteTeamIds = cookies.favouriteTeamIds
+      ? cookies.favouriteTeamIds.split(",")
+      : [];
     favouriteTeamIds.push(teamId.toString());
     nookies.set(null, "favouriteTeamIds", favouriteTeamIds.toString(), {
       maxAge: 365 * 24 * 60 * 60,
@@ -54,7 +56,9 @@ const Favourites = ({
 
   const handleRemoveFavourite = (teamId: number) => {
     const cookies = nookies.get(null, "favouriteTeamIds");
-    const favouriteTeamIds = cookies.favouriteTeamIds?.split(",") ?? [];
+    const favouriteTeamIds = cookies.favouriteTeamIds
+      ? cookies.favouriteTeamIds.split(",")
+      : [];
     const newFavourites = favouriteTeamIds.filter(
       (id) => id !== teamId.toString()
     );
@@ -188,7 +192,9 @@ const Favourites = ({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const cookies = nookies.get(context);
-    const favouriteTeamIds = cookies.favouriteTeamIds?.split(",") ?? [];
+    const favouriteTeamIds = cookies.favouriteTeamIds
+      ? cookies.favouriteTeamIds.split(",")
+      : [];
 
     const result: Array<Match[]> = await Promise.all(
       favouriteTeamIds.map((teamId) => getFixturesByTeamId(teamId))
