@@ -9,6 +9,7 @@ type Props = {
 const LeagueCard = ({ league, active }: Props) => {
   return (
     <Link
+      prefetch={false}
       className={`card ${active ? "active" : ""}`}
       href={`/leagues/${league.id}`}
     >
