@@ -86,12 +86,12 @@ const League = ({
 };
 
 export const getStaticPaths = () => {
-  const paths = supportedLeagueIds.map((leagueId) => ({
-    params: {
-      id: leagueId.toString(),
-    },
-  }));
-  return { paths, fallback: false };
+  // const paths = supportedLeagueIds.map((leagueId) => ({
+  //   params: {
+  //     id: leagueId.toString(),
+  //   },
+  // }));
+  return { paths: [], fallback: "blocking" };
 };
 
 type ContextParams = {
@@ -101,6 +101,8 @@ type ContextParams = {
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { id } = context.params as ContextParams;
+
+    if (!supportedLeagueIds.includes(Number(id))) throw "Unsupported league id";
 
     const matches = await getFixturesByLeagueId(id);
 
