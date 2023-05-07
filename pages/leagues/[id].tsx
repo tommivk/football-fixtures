@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next/types";
+import { GetServerSideProps } from "next/types";
 import { getFixturesByLeagueId, getStandingsByLeagueId } from "../../api";
 import { Match, Standing } from "../../types";
 import MatchList from "../../components/MatchList";
@@ -85,20 +85,11 @@ const League = ({
   );
 };
 
-export const getStaticPaths = () => {
-  // const paths = supportedLeagueIds.map((leagueId) => ({
-  //   params: {
-  //     id: leagueId.toString(),
-  //   },
-  // }));
-  return { paths: [], fallback: "blocking" };
-};
-
 type ContextParams = {
   id: string;
 } & ParsedUrlQuery;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const { id } = context.params as ContextParams;
 
@@ -122,7 +113,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         standings,
         key: id,
       },
-      revalidate: 10,
     };
   } catch (error) {
     console.log(error);
