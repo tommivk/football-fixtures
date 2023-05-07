@@ -105,6 +105,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const standings = await getStandingsByLeagueId(id);
 
+    context.res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=10, stale-while-revalidate=1000"
+    );
+
     return {
       props: {
         matchesToday,
