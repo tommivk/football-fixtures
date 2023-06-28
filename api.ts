@@ -6,7 +6,7 @@ import { supportedLeagueIds } from "./util";
 const API_KEY = process.env.API_KEY ?? "";
 const BASE_URL = "https://v3.football.api-sports.io";
 
-const currentSeason = 2022;
+const currentSeason = 2023;
 
 export const fetchData = async (path: string, cacheTimeMinutes?: number) => {
   const cache = await redis.get(path);
